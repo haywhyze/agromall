@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function Farmer({ farmers }) {
   const params = useParams();
+  const history = useHistory();
   const [farmer, setFarmer] = useState({});
 
   // Uncomment this code when you're ready for the stretch problems
@@ -11,7 +12,28 @@ export default function Farmer({ farmers }) {
     return () => {};
   }, [params.id, farmers]);
 
-  return <div className="card">
-      <h1>{farmer.first_name} {farmer.middle_name} {farmer.surname}</h1>
-  </div>;
+  const goBack = () => {
+    history.goBack();
+  };
+
+  return (
+    <>
+      {farmer && farmer.farmer_id && (
+        <div className="card">
+          <h1>
+            {farmer.first_name} {farmer.middle_name} {farmer.surname}
+          </h1>
+          <img
+            src={
+              "https://s3-eu-west-1.amazonaws.com/agromall-storage/" +
+              farmer.passport_photo
+            }
+            alt={`${farmer.first_name} ${farmer.middle_name} ${farmer.surname}`}
+          />
+          <br />
+          <button onClick={goBack}>Back</button>
+        </div>
+      )}
+    </>
+  );
 }

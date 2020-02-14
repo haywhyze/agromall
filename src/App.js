@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     setFarmersOnDisplay(
-      farmers.slice((currentPage - 1) * 20, currentPage * 20)
+      farmers.slice((currentPage - 1) * 15, currentPage * 15)
     );
   }, [currentPage, farmers]);
 
@@ -38,8 +38,14 @@ function App() {
 
   return (
     <Router>
-      <div style={{textAlign: "center"}}>
-        <h1>Farmers List</h1>
+      <div style={{ textAlign: "center" }}>
+        <h1>
+          <img
+            alt="agromall logo"
+            src="https://pbs.twimg.com/profile_images/1143097392675414016/-CELZI39_400x400.png"
+          />
+          Farmers List
+        </h1>
         {farmersOnDisplay.length === 0 && <p>Loading...</p>}
         <Route exact path="/">
           <FarmersList farmers={farmersOnDisplay} />

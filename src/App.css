@@ -7,6 +7,13 @@ body {
 h1 {
   text-align: center;
   color: #f7c22d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 img {
+  width: 7rem;
 }
 
 button {
@@ -19,6 +26,12 @@ button {
 button:hover {
   background-color: green;
   color: white;
+}
+
+.card img {
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
 }
 
 .card {
