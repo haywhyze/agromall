@@ -14,7 +14,6 @@ function App() {
     axios
       .get("https://theagromall.com/api/v2/get-sample-farmers")
       .then(response => {
-        console.log(response.data.data.farmers[0]);
         setFarmers(response.data.data.farmers);
       })
       .catch(error => {
@@ -30,17 +29,26 @@ function App() {
   }, [currentPage, farmers]);
 
   const gotoNext = () => {
-    setCurrentPage(currentPage + 1)
-  }
+    setCurrentPage(currentPage + 1);
+  };
+
+  const gotoPrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
 
   return (
     <Router>
-      <div>
+      <div style={{textAlign: "center"}}>
         <h1>Farmers List</h1>
-        {console.log(farmersOnDisplay)}
+        {farmersOnDisplay.length === 0 && <p>Loading...</p>}
         <Route exact path="/">
           <FarmersList farmers={farmersOnDisplay} />
-          <button onClick={gotoNext}>Next</button>
+          {currentPage > 1 && farmersOnDisplay.length !== 0 && (
+            <button onClick={gotoPrevious}>Previous</button>
+          )}
+          {farmersOnDisplay.length !== 0 && (
+            <button onClick={gotoNext}>Next</button>
+          )}
         </Route>
         <Route exact path="/:id">
           <Farmer farmers={farmers} />

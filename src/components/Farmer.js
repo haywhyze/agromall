@@ -11,5 +11,7 @@ export default function Farmer({ farmers }) {
     return () => {};
   }, [params.id, farmers]);
 
-  return <div>{farmer.surname}</div>;
+  return <div className="card">
+      <h1>{farmer.first_name} {farmer.middle_name} {farmer.surname}</h1>
+  </div>;
 }

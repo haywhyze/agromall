@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-export default function MovieList({ farmers }) {
+export default function FarmersList({ farmers }) {
   return (
-    <div className="movie-list">
+    <StyledContainer>
       {farmers.map(farmer => (
         <FarmerDetails key={farmer.farmer_id} farmer={farmer} />
       ))}
-    </div>
+    </StyledContainer>
   );
 }
 
@@ -20,3 +21,15 @@ function FarmerDetails({ farmer }) {
     </Link>
   );
 }
+
+const StyledContainer = styled.div`
+  /* background: red; */
+  text-align: center;
+  a {
+      color: #40a31c;
+      text-decoration: none;
+  }
+  h3 {
+
+  }
+`;
